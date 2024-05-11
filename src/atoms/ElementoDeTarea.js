@@ -1,6 +1,6 @@
 import React from "react";
 
-function ElementoDeTarea({ tarea, alternarCompletada, eliminarTarea }) {
+function ElementoDeTarea({ tarea, alternarCompletada }) {
   return (
     <li>
       <input
@@ -9,7 +9,6 @@ function ElementoDeTarea({ tarea, alternarCompletada, eliminarTarea }) {
         onChange={() => alternarCompletada(tarea.id)}
       />
       <span className={tarea.completada ? "completada" : ""}>{tarea.texto}</span>
-      <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
     </li>
   );
 }

@@ -6,8 +6,8 @@ function ListaDeTareas() {
   const [tareas, setTareas] = useState([]);
 
   useEffect(() => {
-    const tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || [];
-    setTareas(tareasGuardadas);
+    const storedTareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    setTareas(storedTareas);
   }, []);
 
   useEffect(() => {
@@ -40,6 +40,15 @@ function ListaDeTareas() {
     setTareas(tareasActualizadas);
   };
 
+  const eliminarTodasLasTareas = () => {
+    setTareas([]);
+  };
+
+  const eliminarTareasCompletadas = () => {
+    const tareasSinCompletar = tareas.filter((tarea) => !tarea.completada);
+    setTareas(tareasSinCompletar);
+  };
+
   return (
     <div>
       <InputDeTarea agregarTarea={agregarTarea} />
@@ -53,6 +62,8 @@ function ListaDeTareas() {
           />
         ))}
       </ul>
+      <button onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
+      <button onClick={eliminarTareasCompletadas}>Eliminar tareas completadas</button>
     </div>
   );
 }
