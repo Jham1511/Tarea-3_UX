@@ -6,8 +6,10 @@ function ListaDeTareas() {
   const [tareas, setTareas] = useState([]);
 
   useEffect(() => {
-    const storedTareas = JSON.parse(localStorage.getItem("tareas")) || [];
-    setTareas(storedTareas);
+    const storedTareas = localStorage.getItem("tareas");
+    if (storedTareas) {
+      setTareas(JSON.parse(storedTareas));
+    }
   }, []);
 
   useEffect(() => {
